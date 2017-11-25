@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+</head>
+<body>
+<h1>Registration Form</h1>
+<hr>
+
+<form name="f1" method="get" action="Register">
+<table>
+    <tbody>
+    <tr>
+        <td>User name: </td>
+        <td><label>
+            <input type="text" name="userName">
+        </label></td>
+    </tr>
+
+    <tr>
+        <td>Password: </td>
+        <td>
+            <label>
+                <input type="password" name="passwd">
+            </label>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Sex: </td>
+        <td>
+            <label>
+                <input type="radio" name="gender" value="Male"/>
+            </label> Male &nbsp;
+            <label>
+                <input type="radio" name="gender" value="Female"/>
+            </label> Female &nbsp;
+        </td>
+    </tr>
+
+    <tr>
+        <td>Hobbies: </td>
+        <td>
+            <label>
+                <input type="checkbox" name="hobbies" value="Movies"/>
+            </label> Movies &nbsp;
+            <label>
+                <input type="checkbox" name="hobbies" value="Music"/>
+            </label> Music &nbsp;
+            <label>
+                <input type="checkbox" name="hobbies" value="Sports"/>
+            </label> Sports &nbsp;
+        </td>
+    </tr>
+
+    <tr>
+        <td>Country:</td>
+        <td>
+            <label>
+                <select name="country">
+                    <option value="Australia">Australia</option>
+                    <option value="China">China</option>
+                    <option value="USA">USA</option>
+                    <option value="UK">UK</option>
+                </select>
+            </label>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Languages Known: </td>
+        <td>
+            <label>
+                <select name="languages" multiple="multiple">
+                    <option value="Chinese">Chinese</option>
+                    <option value="English">English</option>
+                    <option value="French">French</option>
+                    <option value="Hindi">Hindi</option>
+                </select>
+            </label>
+        </td>
+    </tr>
+
+    <tr>
+        <td>&nbsp;</td>
+        <td>
+            <input type="submit" value="Register" name="btnRegister"/>&nbsp;
+            <input type="reset" value="Clear" name="btnClear" />
+        </td>
+    </tr>
+
+
+    </tbody>
+</table>
+</form>
+
+
+</body>
+</html>
