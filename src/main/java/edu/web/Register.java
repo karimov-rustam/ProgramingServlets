@@ -14,17 +14,16 @@ import java.io.PrintWriter;
 @WebServlet(name = "Register324", urlPatterns = "/Register")
 public class Register  extends HttpServlet {
 
-    public Register() {
-//        super();
-    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        doGet(request, response);
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String username = request.getParameter("userName");
         String passwd = request.getParameter("passwd");
         String gender = request.getParameter("gender");
