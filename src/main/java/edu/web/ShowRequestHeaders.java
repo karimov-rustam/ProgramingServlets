@@ -12,7 +12,7 @@ import java.util.Enumeration;
 /**
  * Created by R.Karimov on 11/29/17.
  */
-@WebServlet("/ShowRequestHeaders")
+@WebServlet(name = "ShowRequestHeaders", urlPatterns = "/ShowRequestHeaders")
 public class ShowRequestHeaders extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

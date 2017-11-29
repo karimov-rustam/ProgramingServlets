@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * Created by R.Karimov on 11/22/17.
  */
-@WebServlet("/UserInfoServlet")
+@WebServlet(name = "UserInfoServlet", urlPatterns = "/UserInfoServlet")
 public class UserInfoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

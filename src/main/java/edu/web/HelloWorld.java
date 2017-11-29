@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 /**
  * Created by R.Karimov on 11/22/17.
  */
-@WebServlet("/HelloWorld")
+@WebServlet(name = "HelloWorld", urlPatterns = "/HelloWorld")
 public class HelloWorld extends GenericServlet{
     private final static long serialVersionUID = 1L;
 

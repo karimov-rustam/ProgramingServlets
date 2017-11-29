@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 /**
  * Created by R.Karimov on 11/25/17.
  */
-@WebServlet(name = "Register324", urlPatterns = "/Register")
+@WebServlet(name = "Register", urlPatterns = "/Register")
 public class Register  extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

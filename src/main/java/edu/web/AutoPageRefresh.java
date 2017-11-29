@@ -7,43 +7,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by R.Karimov on 11/29/17.
  */
-@WebServlet(name = "LargeServletPage", urlPatterns = "/LargeServletPage")
-public class LargeServletPage extends HttpServlet {
+@WebServlet(name = "AutoPageRefresh", urlPatterns = "/AutoPageRefresh")
+public class AutoPageRefresh extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         response.setContentType("text/html");
+        response.setIntHeader("Refresh", 3);
 
-        PrintWriter out;
-        if (GzipUtility.isGzipSupported(request) && !GzipUtility.isGsipDisabled(request)) {
-            out = GzipUtility.getGzipWriter(response);
-            response.setHeader("Content-Encoding", "gzip");
-        } else {
-            out = response.getWriter();
-        }
-//        out = response.getWriter();
+        Date currentDate = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("E dd-MM-yyyy 'at' hh:mm:ss a");
+        String currentDateAndTime = ft.format(currentDate);
 
-        String dummyLine = "Simply dummy text";
+        PrintWriter out = response.getWriter();
 
         out.println("<!Doctype HTML>");
         out.println("<html>");
         out.println("<head>");
-        out.println("<title>Showing All Request Headers</title>");
+        out.println("<title>Auto Refresh using HTTP Refresh Header</title>");
         out.println("</head>");
         out.println("<body>");
 
-        for (int i = 0; i < 25000; i++) {
-            out.println(dummyLine + "</br>");
-        }
+        out.println("<p>Page was Last Refreshed at:" + currentDateAndTime + "</p>");
 
         out.println("</body>");
         out.println("</html>");
