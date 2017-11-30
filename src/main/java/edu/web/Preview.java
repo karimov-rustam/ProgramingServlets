@@ -16,10 +16,13 @@ public class Preview extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
         String guestName = request.getParameter("guestName");
         String email = request.getParameter("email");
-
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
@@ -30,23 +33,13 @@ public class Preview extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
 
-        out.println("<h3>Please confirm your information</h3>");
         out.println("<p>Guest Name: " + guestName + "</p>");
         out.println("<p>Email: " + email + "</p>");
 
-        out.println("<form name='frm' action='SaveData' method='post'>");
-        out.println("<input type='hidden' name='guestName' value='" + guestName + "'/>");
-        out.println("<input type='hidden' name='email' value='" + email + "'/>");
-        out.println("<p><input type='submit' value='Save Data' name='btnSave'/>");
-        out.println("</form>");
+        String queryString = "?guestName=" + guestName + "&email=" + email;
+        out.println("<a href='SaveData?" + queryString + "'Save Data </a>");
 
         out.println("</body>");
         out.println("</html>");
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
     }
 }

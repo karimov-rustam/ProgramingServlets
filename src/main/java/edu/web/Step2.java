@@ -17,6 +17,8 @@ public class Step2 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String guestName = request.getParameter("guestName");
+        String email = request.getParameter("email");
+
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
@@ -27,15 +29,10 @@ public class Step2 extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
 
-        out.println("<h3>Welcome " + guestName + "</h3>");
-        out.println("<form name='frm' action='Preview' method='post'>");
+        String queryString = "guestName=" + guestName + "&email=" + email;
 
-        out.println("<input type='hidden' name='guestName' value='" + guestName + "'/>");
-
-        out.println("<p>Enter email: </p>");
-        out.println("<p><input type='email' name='email' /></p>");
-        out.println("<p><input type='submit' value='Preview' name='btnPreview'/></p>");
-        out.println("</form>");
+        out.println("<a href='Preview?" + queryString + "'>Preview data</a> &nbsp;" +
+                "<a href='SaveData?" + queryString + "'>Save Data</a>");
 
         out.println("</body>");
         out.println("</html>");
