@@ -2,10 +2,7 @@ package edu.web;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -16,9 +13,10 @@ import java.io.PrintWriter;
 public class SaveData extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Cookie userData[] = request.getCookies();
-        String guestName = userData[0].getValue();
-        String email = userData[1].getValue();
+
+        HttpSession session = request.getSession();
+        String guestName = (String) session.getAttribute("guestName");
+        String email = (String) session.getAttribute("email");
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();

@@ -2,10 +2,7 @@ package edu.web;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -19,8 +16,8 @@ public class Preview extends HttpServlet {
             throws ServletException, IOException {
 
         String email = request.getParameter("email");
-        Cookie userData[] = request.getCookies();
-        String guestName = userData[0].getValue();
+        HttpSession session = request.getSession();
+        String guestName = (String) session.getAttribute("guestName");
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -35,8 +32,8 @@ public class Preview extends HttpServlet {
         out.println("<h3>Please confirm your information</h3>");
         out.println("<p>Guest Name: " + guestName + "</p>");
         out.println("<p>Email: " + email + "</p>");
-        Cookie emailData = new Cookie("email", email);
-        response.addCookie(emailData);
+
+        session.setAttribute("email", email);
 
         out.println("<form name='frm' action='SaveData' method='post'>");
         out.println("<p><input type='submit' value='Save Data' name='btnSave'</>");
