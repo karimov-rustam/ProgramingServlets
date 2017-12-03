@@ -10,17 +10,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by R.Karimov on 12/1/17.
+ * Created by R.Karimov on 12/3/17.
  */
-@WebServlet(name = "Preview", urlPatterns = "/Preview")
-public class Preview extends HttpServlet {
-
+@WebServlet(name = "SaveData", urlPatterns = "/SaveData")
+public class SaveData extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String email = request.getParameter("email");
         Cookie userData[] = request.getCookies();
         String guestName = userData[0].getValue();
+        String email = userData[1].getValue();
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -32,15 +30,9 @@ public class Preview extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
 
-        out.println("<h3>Please confirm your information</h3>");
+        out.println("<h3>Guest Details</h3>");
         out.println("<p>Guest Name: " + guestName + "</p>");
         out.println("<p>Email: " + email + "</p>");
-        Cookie emailData = new Cookie("email", email);
-        response.addCookie(emailData);
-
-        out.println("<form name='frm' action='SaveData' method='post'>");
-        out.println("<p><input type='submit' value='Save Data' name='btnSave'</>");
-        out.println("</form>");
 
         out.println("</body>");
         out.println("</html>");
@@ -48,5 +40,8 @@ public class Preview extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        response.getWriter().append("Served at: ").append(request.getContextPath());
+
     }
 }

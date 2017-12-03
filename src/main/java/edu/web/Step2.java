@@ -2,6 +2,7 @@ package edu.web;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,9 @@ public class Step2 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String guestName = request.getParameter("guestName");
-        String email = request.getParameter("email");
+
+        Cookie guestData = new Cookie("guestName", guestName);
+        response.addCookie(guestData);
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -29,10 +32,16 @@ public class Step2 extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
 
-        String queryString = "guestName=" + guestName + "&email=" + email;
+        out.println("<p>Welcome " + guestName + "</p>");
 
-        out.println("<a href='Preview?" + queryString + "'>Preview data</a> &nbsp;" +
-                "<a href='SaveData?" + queryString + "'>Save Data</a>");
+        out.println("<form name='frm' action='Preview' method='post'>");
+        out.println("<p>Enter Email: </p>");
+        out.println("<p><input type='email' name='email'/></p>");
+        out.println("<p><input type='submit' values='Show Preview' name='btnPreview'/></p>");
+        out.println("</form>");
+
+
+
 
         out.println("</body>");
         out.println("</html>");
