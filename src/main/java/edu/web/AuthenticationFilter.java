@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by R.Karimov on 11/30/17.
  */
-@WebFilter(filterName = "AuthenticationFilter")
+@WebFilter(filterName = "Authenticate", urlPatterns = "/SecuredServlet")
 public class AuthenticationFilter implements Filter {
 
     public void destroy() {
